@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -45,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     topBar = { TopAppBar(Modifier.padding(WindowInsets.statusBars.asPaddingValues())) }
                 ) { innerPadding ->
                     Surface(modifier = Modifier.padding(innerPadding)) {
-
+                        HaikuCardList(HaikuRepository.haikus)
                     }
                 }
             }
@@ -102,6 +104,15 @@ fun HaikuCard(cardTitle: String, haiku: Haiku, modifier: Modifier = Modifier){
     }
 }
 
+@Composable
+fun HaikuCardList(haikus: List<Haiku>, modifier: Modifier = Modifier){
+    LazyColumn(modifier = modifier) {
+        itemsIndexed(haikus) { day, haiku ->
+            HaikuCard(stringResource(R.string.day_of, day + 1), haiku)
+        }
+    }
+}
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun AppPreview(){
@@ -110,7 +121,7 @@ fun AppPreview(){
             topBar = { TopAppBar(Modifier.padding(WindowInsets.statusBars.asPaddingValues())) }
         ) { innerPadding ->
             Surface(modifier = Modifier.padding(innerPadding)) {
-                HaikuCard("Day 1", HaikuRepository.haikus[0])
+                HaikuCardList(HaikuRepository.haikus)
             }
         }
     }

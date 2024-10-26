@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">practice_ThirtyDayApp</string>
-    <string name="day_of">Tip for the day of %s</string>
+    <string name="day_of">Haiku for the day %s of the Month</string>
     <string name="topbar">30 Days of Haikus</string>
 </resources>
