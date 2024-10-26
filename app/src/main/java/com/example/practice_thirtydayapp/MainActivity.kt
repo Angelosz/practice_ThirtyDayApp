@@ -50,7 +50,6 @@ fun TopAppBar(modifier: Modifier = Modifier){
         Text(
             text = stringResource(R.string.topbar),
             style = MaterialTheme.typography.displayLarge,
-            modifier = modifier
         )
     }
 }
